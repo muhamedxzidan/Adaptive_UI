@@ -1,5 +1,6 @@
 import 'package:adaptive_ui/core/theme/app_colors.dart';
 import 'package:adaptive_ui/share/widgets/app_bar_widget.dart';
+import 'package:adaptive_ui/share/widgets/custom_card.dart';
 import 'package:flutter/material.dart';
 import 'package:adaptive_ui/share/widgets/custom_button.dart';
 
@@ -9,57 +10,67 @@ class AdaptiveUi extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false, // Clean look
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: const AppBarWidget(),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Column(
-            children: [
-              const SizedBox(height: 20),
-              const Center(
-                child: Text(
-                  'SignSight',
-                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Column(
+              children: [
+                const SizedBox(height: 20),
+                const Center(
+                  child: Text(
+                    'SignSight',
+                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                  ),
                 ),
-              ),
-              const SizedBox(height: 10),
-              const Text(
-                'Breaking communication barriers\nwith real-time sign language translation',
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 40),
-
-              // First Button: Standard Size
-              CustomButton(
-                onTap: () => debugPrint('Start translation tapped'),
-                height: 55,
-                width: double.infinity, // Full width for better UX on mobile
-                color: AppColors.primaryPurple,
-                icon: const Icon(Icons.camera_alt, color: AppColors.textWhite),
-                text: 'Start Translation',
-              ),
-
-              const SizedBox(height: 20),
-
-              // Second Button: Large Adaptive Size
-              CustomButton(
-                onTap: () => debugPrint('Capture sign tapped'),
-                borderRadius: BorderRadius.circular(20),
-                height: 180,
-                width: double.infinity,
-                text:
-                    'Capture Sign\nUse your camera to capture sign language in real time',
-                color: AppColors.primaryPurple.withValues(
-                  alpha: 0.9,
-                ), // Subtle variation
-                icon: const Icon(
-                  Icons.videocam,
-                  color: AppColors.textWhite,
-                  size: 40,
+                const SizedBox(height: 10),
+                const Text(
+                  'Breaking communication barriers\nwith real-time sign language translation',
+                  textAlign: TextAlign.center,
                 ),
-              ),
-            ],
+                const SizedBox(height: 40),
+
+                // Simple button with icon and text
+                CustomButton(
+                  onTap: () => debugPrint('Start translation tapped'),
+                  height: 55,
+                  width: 300,
+                  color: AppColors.primaryPurple,
+                  icon: const Icon(
+                    Icons.camera_alt,
+                    color: AppColors.textWhite,
+                  ),
+                  text: 'Start Translation',
+                ),
+
+                const SizedBox(height: 20),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 20.0),
+                  child: CustomCard(
+                    icon: const Icon(Icons.camera_alt),
+                    title: 'SignSight',
+                    style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    description:
+                        'Use your camera to capture sign\nlanguage in real time',
+                  ),
+                ),
+                CustomCard(
+                  icon: const Icon(Icons.menu),
+                  title: 'Text translation',
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  description: 'convert signs  to readable text instantly',
+                ),
+                const SizedBox(height: 20),
+              ],
+            ),
           ),
         ),
       ),
