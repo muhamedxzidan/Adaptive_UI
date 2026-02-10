@@ -10,6 +10,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+    debugPrint('height: $height');
+    debugPrint('width: $width');
+
     return AdaptiveUi();
   }
 }

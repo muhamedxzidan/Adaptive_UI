@@ -7,17 +7,21 @@ class CustomCard extends StatelessWidget {
     required this.description,
     required this.icon,
     this.style,
+    this.height,
+    this.width,
   });
   final String title;
   final String description;
   final Icon icon;
   final TextStyle? style;
+  final double? height;
+  final double? width;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 300,
-      height: 200,
+      height: height,
+      width: width,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12),
@@ -30,16 +34,13 @@ class CustomCard extends StatelessWidget {
           ),
         ],
       ),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          spacing: 10,
-          children: [
-            icon,
-            Text(title, style: style),
-            Text(description),
-          ],
-        ),
+      child: Column(
+        spacing: 10,
+        children: [
+          icon,
+          Text(title, style: style),
+          Text(description),
+        ],
       ),
     );
   }
